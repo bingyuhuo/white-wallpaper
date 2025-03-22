@@ -61,6 +61,26 @@ function App() {
       setLoadedImages(prev => ({ ...prev, [wallpapers[0].url]: true }));
       setIsLoading(false);
     };
+
+    // 添加 Google Analytics 脚本
+    const script1 = document.createElement('script');
+    script1.src = `https://www.googletagmanager.com/gtag/js?id=G-TG7EGHFH4W`;
+    script1.async = true;
+    document.head.appendChild(script1);
+
+    script1.onload = () => {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(...args: any[]) {
+        window.dataLayer.push(args);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-TG7EGHFH4W');
+    };
+
+    // 清理函数
+    return () => {
+      document.head.removeChild(script1);
+    };
   }, []);
 
   const handleImageLoad = (url: string) => {
