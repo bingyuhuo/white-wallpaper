@@ -62,24 +62,26 @@ function App() {
       setIsLoading(false);
     };
 
-    // 添加 Google Analytics 脚本
+    // 添加 Google Analytics
     const script1 = document.createElement('script');
     script1.src = `https://www.googletagmanager.com/gtag/js?id=G-TG7EGHFH4W`;
     script1.async = true;
     document.head.appendChild(script1);
 
-    script1.onload = () => {
+    const script2 = document.createElement('script');
+    script2.textContent = `
       window.dataLayer = window.dataLayer || [];
-      function gtag(...args: any[]) {
-        window.dataLayer.push(args);
-      }
+      function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-TG7EGHFH4W');
-    };
+    `;
+    document.head.appendChild(script2);
 
-    // 清理函数
     return () => {
       document.head.removeChild(script1);
+      if (script2.parentNode) {
+        document.head.removeChild(script2);
+      }
     };
   }, []);
 
