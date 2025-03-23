@@ -64,24 +64,21 @@ function App() {
 
     // 添加 Google Analytics
     const script1 = document.createElement('script');
-    script1.src = `https://www.googletagmanager.com/gtag/js?id=G-TG7EGHFH4W`;
+    script1.src = `https://www.googletagmanager.com/gtag/js?id=G-WFKYG5HXC6`;
     script1.async = true;
     document.head.appendChild(script1);
 
-    const script2 = document.createElement('script');
-    script2.textContent = `
+    script1.onload = () => {
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
+      function gtag(...args: any[]) {
+        window.dataLayer.push(args);
+      }
       gtag('js', new Date());
-      gtag('config', 'G-TG7EGHFH4W');
-    `;
-    document.head.appendChild(script2);
+      gtag('config', 'G-WFKYG5HXC6');
+    };
 
     return () => {
       document.head.removeChild(script1);
-      if (script2.parentNode) {
-        document.head.removeChild(script2);
-      }
     };
   }, []);
 
