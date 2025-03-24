@@ -6,7 +6,10 @@ export const Header: React.FC = () => {
     <header className="bg-gray-800 border-b border-gray-700">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-white">White Wallpaper</h1>
+          <div className="flex items-center space-x-2">
+            <img src="/logo.svg" alt="White Wallpaper Logo" className="w-8 h-8" />
+            <h1 className="text-2xl font-bold text-white">White Wallpaper</h1>
+          </div>
           <a
             href="https://x.com/spears_ron21336"
             target="_blank"
