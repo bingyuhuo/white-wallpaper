@@ -36,7 +36,7 @@ function App() {
         {/* 没有更多内容的提示 */}
         {!hasMore && displayedItems.length > 0 && (
           <div className="text-center text-gray-400 py-8">
-            没有更多图片了
+            No more pictures
           </div>
         )}
       </div>
