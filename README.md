@@ -3,6 +3,18 @@
 ## Overview
 White Wallpaper is an elegant wallpaper showcase website that focuses on displaying high-quality white-themed wallpapers. The project adopts an Apple-inspired design philosophy, emphasizing simplicity and user experience.
 
+## Analytics and Tracking
+The project uses Google Analytics 4 for tracking user interactions and gathering usage statistics. The tracking code is implemented in the `index.html` file with the following features:
+- Page view tracking
+- User engagement metrics
+- Performance monitoring
+- User behavior analysis
+
+To modify the Google Analytics configuration:
+1. Locate the Google Analytics code in `index.html`
+2. Update the tracking ID (G-TG7BCHFH4W) with your own if needed
+3. Customize tracking parameters as required
+
 ## Project Structure
 ```
 project/
