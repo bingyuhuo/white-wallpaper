@@ -20,15 +20,23 @@ const generateWallpaperData = () => {
     const files = fs.readdirSync(originalDir);
     const wallpapers: Wallpaper[] = [];
     
-    files.forEach((file, index) => {
-      if (file.match(/\.(jpg|jpeg|png)$/i)) {
-        wallpapers.push({
-          id: index + 1,
-          title: `White Wallpaper ${index + 1}`,
-          thumbnail: `/images/thumbnails/${file}`,
-          original: `/images/original/${file}`
-        });
-      }
+    // 获取文件信息并按照修改时间排序（最新的在前面）
+    const fileStats = files
+      .filter(file => file.match(/\.(jpg|jpeg|png)$/i))
+      .map(file => ({
+        name: file,
+        stats: fs.statSync(join(originalDir, file))
+      }))
+      .sort((a, b) => b.stats.mtime.getTime() - a.stats.mtime.getTime());
+    
+    // 生成壁纸数据
+    fileStats.forEach((file, index) => {
+      wallpapers.push({
+        id: index + 1,
+        title: `White Wallpaper ${index + 1}`,
+        thumbnail: `/images/thumbnails/${file.name}`,
+        original: `/images/original/${file.name}`
+      });
     });
 
     // 生成 TypeScript 文件内容
