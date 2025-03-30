@@ -22,6 +22,14 @@ project/
 │   ├── App.tsx            # Main application component
 │   ├── main.tsx           # Application entry point
 │   ├── index.css          # Global styles
+│   ├── components/        # Reusable components
+│   │   ├── preview/       # Device preview components
+│   │   │   ├── DevicePreview.tsx        # Device frame renderer
+│   │   │   ├── DeviceSelector.tsx       # Device selection UI
+│   │   │   ├── DeviceTypes.tsx          # Device definitions
+│   │   │   ├── DevicePreviewUtils.tsx   # Utility functions
+│   │   │   ├── ImagePreviewModal.tsx    # Preview modal container
+│   │   │   └── index.ts                 # Component exports
 │   └── vite-env.d.ts      # Vite environment declarations
 ├── public/                # Static assets
 ├── .bolt/                 # Project configuration
@@ -58,6 +66,48 @@ project/
 ### 3. Wallpaper Details
 - High-resolution preview
 - Download capability
+
+### 4. Device Preview System
+The project includes a sophisticated device preview system that allows users to visualize wallpapers on different devices:
+
+- **Multiple Device Support**: 
+  - iPhone 15 Pro (with dynamic island)
+  - Android Flagship
+  - PC Monitor
+  - MacBook Pro
+  - iPad Pro
+  - Original Size (no frame)
+
+- **Realistic Device Rendering**:
+  - Accurate device dimensions and aspect ratios
+  - Realistic frames with appropriate bezels
+  - Device-specific features (notches, control bars)
+  - Proper scaling for all device types
+  
+- **Visual Enhancements**:
+  - Subtle light reflections on device surfaces
+  - Realistic shadows and gradients
+  - Device-specific buttons and controls
+  - Status bar simulation
+
+- **Interactive Preview Modal**:
+  - Elegant backdrop with subtle gradient
+  - Quick device switching via dropdown
+  - Smooth transitions between device types
+  - Device-specific wallpaper download
+  - Keyboard navigation support
+
+- **Device Navigation**:
+  - Left/right arrows to cycle through available devices
+  - Visual indicator showing current device selection
+  - Smooth animations during device switching
+
+- **Device-Specific Wallpaper Download**:
+  - Download wallpapers sized specifically for the selected device
+  - Automatic image resizing based on device screen dimensions
+  - Proper aspect ratio preservation during resizing
+  - Image cropping to fit device aspect ratio
+  - Original size download option for full resolution
 
 ## Design Philosophy
 
@@ -181,19 +231,27 @@ npm run preview
 - Performance impact assessment
 - Accessibility considerations
 
-## Maintenance
+## Recent Updates and Improvements
 
-### Regular Tasks
-- Dependency updates
-- Performance monitoring
-- Bug tracking and fixing
-- Feature enhancement
+### Device Preview System Enhancement (2024-03-30)
+- Improved visual fidelity of device frames
+- Added realistic reflections and lighting effects
+- Enhanced device-specific features (buttons, notches, etc.)
+- Added realistic status bars and control elements
+- Optimized transitions between device types
+- Redesigned preview modal with improved UX
+- Added direct download capability from preview
 
-### Monitoring
-- Error tracking
-- Performance metrics
-- User analytics
-- Server health
+### Device Navigation Feature (2024-03-30)
+- Added ability to cycle through devices using left/right arrows
+- Added device indicators to show current selection
+- Implemented smooth animation during device switching
+
+### Device-Specific Wallpaper Download (2024-03-30)
+- Added capability to download wallpapers sized for specific devices
+- Implemented image resizing and cropping to fit device aspect ratios
+- Added tooltips showing download information
+- Preserved original download option for full resolution
 
 ## Support
 

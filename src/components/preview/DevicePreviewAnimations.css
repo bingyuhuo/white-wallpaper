@@ -1,0 +1,66 @@
+/* Device preview animations */
+
+@keyframes fadeInDevice {
+  from {
+    opacity: 0.5;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Pulse animation for device selection buttons */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.3);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+}
+
+/* Add hover effect to device switching arrows */
+.device-nav-arrow {
+  transition: all 0.2s ease;
+}
+
+.device-nav-arrow:hover {
+  transform: scale(1.1);
+  animation: pulse 1.5s infinite;
+}
+
+/* Device transition classes */
+.device-enter {
+  opacity: 0;
+}
+
+.device-enter-active {
+  opacity: 1;
+  transition: opacity 200ms;
+}
+
+.device-exit {
+  opacity: 1;
+}
+
+.device-exit-active {
+  opacity: 0;
+  transition: opacity 200ms;
+} 
