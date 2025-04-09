@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Download, Eye } from 'lucide-react';
 import { Wallpaper } from '../data/wallpapers';
 import { downloadImage } from '../utils/download';
 import { ImagePreviewModal } from './ImagePreviewModal';
+import { usePreview } from './preview/PreviewContext';
 
 interface WallpaperCardProps {
   wallpaper: Wallpaper;
@@ -13,26 +14,42 @@ export const WallpaperCard: React.FC<WallpaperCardProps> = ({
   wallpaper,
   priority = false
 }) => {
-  // 添加预览模态框状态
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
+  const { activePreviewId, setActivePreviewId } = usePreview();
 
   // 打开预览
-  const openPreview = () => setIsPreviewOpen(true);
+  const openPreview = () => {
+    setActivePreviewId(wallpaper.id);
+    setIsPreviewOpen(true);
+  };
   
   // 关闭预览
-  const closePreview = () => setIsPreviewOpen(false);
+  const closePreview = () => {
+    setActivePreviewId(null);
+    setIsPreviewOpen(false);
+  };
+
+  // 当activePreviewId变化时，如果不等于当前壁纸ID，则关闭预览
+  useEffect(() => {
+    if (activePreviewId !== null && activePreviewId !== wallpaper.id && isPreviewOpen) {
+      setIsPreviewOpen(false);
+    }
+  }, [activePreviewId, wallpaper.id, isPreviewOpen]);
 
   return (
     <div className="relative bg-gray-800 rounded-lg overflow-hidden group">
-      <img
-        src={wallpaper.thumbnail}
-        alt={wallpaper.title}
-        className="w-full h-full object-cover"
-        loading={priority ? "eager" : "lazy"}
-        decoding="async"
-        width={800}
-        height={450}
-      />
+      {/* 添加固定的宽高比容器 */}
+      <div className="aspect-ratio-16/9 relative">
+        <img
+          src={wallpaper.thumbnail}
+          alt={wallpaper.title}
+          className="absolute inset-0 w-full h-full object-cover"
+          loading={priority ? "eager" : "lazy"}
+          decoding="async"
+          width={800}
+          height={450}
+        />
+      </div>
       
       {/* 预览按钮 - 保持在中央 */}
       <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition-opacity flex items-center justify-center opacity-0 group-hover:opacity-100">
